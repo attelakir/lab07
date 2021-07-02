@@ -24,11 +24,11 @@ set(PRINT_VERSION_STRING "v${PRINT_VERSION}")
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
-add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp) #статическая библиотека
 
 target_include_directories(print PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> #Выражение BUILD_INTERFACE переносит требования,которые используются только тогда, когда они потребляются из целевого объекта в одной и той же сборке, или когда они потребляются из объекта, экспортированного в каталог сборки, используя команду export() . 
+  $<INSTALL_INTERFACE:include>                           #Выражение INSTALL_INTERFACE переносит требования, которые используются только тогда, когда они потребляются из цели, которая была установлена ​​и экспортирована с помощью команды install(EXPORT) : 
 )
 
 if(BUILD_EXAMPLES)
